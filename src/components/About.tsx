@@ -46,12 +46,12 @@ const ExpertiseItem = ({
     return (
         <motion.div
             ref={ref}
-            className="py-12 md:py-16 border-t border-white/10 group"
+            className="py-10 md:py-16 border-t border-white/10 group"
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-            <div className="flex flex-col md:flex-row gap-6 md:gap-12">
+            <div className="flex flex-row gap-4 md:gap-12">
                 {/* Number / Emoji Column */}
                 <div className="flex-shrink-0 md:w-24">
                     <span className="text-4xl filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 block transform group-hover:scale-110 group-hover:-rotate-3 origin-center">
@@ -61,11 +61,11 @@ const ExpertiseItem = ({
                 </div>
 
                 {/* Content Column */}
-                <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl text-white font-medium tracking-tight mb-4 group-hover:text-zinc-200 transition-colors duration-300">
+                <div className="flex-1 mt-1 md:mt-0">
+                    <h3 className="text-xl md:text-3xl text-white font-medium tracking-tight mb-3 md:mb-4 group-hover:text-zinc-200 transition-colors duration-300">
                         {item.title}
                     </h3>
-                    <p className="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light md:pr-8">
+                    <p className="text-zinc-400 text-[15px] md:text-[17px] leading-[1.7] md:leading-[1.8] font-light md:pr-8">
                         {item.description}
                     </p>
                 </div>
@@ -103,7 +103,7 @@ export function About() {
 
                     {/* ── LEFT COLUMN: STICKY MANIFESTO ── */}
                     <div className="lg:col-span-5 relative">
-                        <div className="lg:sticky lg:top-32 pt-24 pb-12 lg:pb-32">
+                        <div className="lg:sticky lg:top-32 pt-16 pb-8 lg:pt-24 lg:pb-32">
 
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
@@ -158,7 +158,7 @@ export function About() {
                     </div>
 
                     {/* ── RIGHT COLUMN: EXPERTISE LIST (SCROLLABLE) ── */}
-                    <div className="lg:col-span-7 pt-12 lg:pt-32 pb-32">
+                    <div className="lg:col-span-7 pt-8 lg:pt-32 pb-24 lg:pb-32">
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

@@ -42,16 +42,16 @@ export default function App() {
 
 
       <main>
-        <div className="snap-start snap-always h-screen w-full overflow-hidden">
+        <div className="snap-start snap-always w-full min-h-screen">
           <Hero />
         </div>
-        <div className="snap-start snap-always min-h-screen w-full overflow-y-auto">
+        <div className="snap-start snap-always w-full min-h-screen">
           <About />
         </div>
-        <div className="snap-start snap-always h-screen w-full overflow-hidden flex flex-col justify-center">
+        <div className="snap-start snap-always w-full min-h-screen flex flex-col justify-center">
           <Expertise />
         </div>
-        <div className="snap-start snap-always h-screen w-full overflow-hidden flex flex-col justify-center">
+        <div className="snap-start snap-always w-full min-h-screen flex flex-col justify-center">
           <SelectedWorks />
         </div>
         <div className="snap-start snap-always min-h-screen w-full flex flex-col justify-between bg-zinc-50">

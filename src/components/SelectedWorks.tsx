@@ -126,7 +126,7 @@ export function SelectedWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-white rounded-3xl overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.1)] border border-zinc-100 flex flex-col md:flex-row h-[600px] md:h-[550px]"
+          className="bg-white rounded-3xl overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.1)] border border-zinc-100 flex flex-col md:flex-row h-[700px] md:h-[550px]"
         >
           {/* Sidebar / List */}
           <div className="w-full md:w-1/3 bg-white border-r border-zinc-100 flex flex-col relative z-10">
@@ -175,7 +175,7 @@ export function SelectedWorks() {
           </div>
 
           {/* Main Preview Area */}
-          <div className="w-full md:w-2/3 relative bg-zinc-100 overflow-hidden group">
+          <div className="w-full md:w-2/3 flex-1 relative bg-zinc-100 overflow-hidden group">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeWork.id}
@@ -196,15 +196,15 @@ export function SelectedWorks() {
             </AnimatePresence>
 
             {/* Floating Info Card (Glassmorphism) */}
-            <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
+            <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 pointer-events-none">
               <motion.div
                 key={activeWork.id}
                 initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-white/20 pointer-events-auto"
+                className="bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl shadow-lg border border-white/20 pointer-events-auto"
               >
-                <div className="flex flex-col md:flex-row gap-6 justify-between items-end">
+                <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 justify-between items-end">
                   <div className="space-y-3">
                     <div className="flex gap-2">
                       {activeWork.tech.map(t => (

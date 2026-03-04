@@ -295,7 +295,7 @@ export function Expertise() {
         <ParallaxText baseVelocity={-1}>EXPERTISE • </ParallaxText>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 relative z-10 w-full">
         {/* Simulated Mac Window */}
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.95 }}
@@ -317,7 +317,7 @@ export function Expertise() {
           </div>
 
           {/* Window Content */}
-          <div className="p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 bg-white">
+          <div className="p-5 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 bg-white">
             {expertiseAreas.map((area, i) => (
               <motion.div
                 key={area.title}

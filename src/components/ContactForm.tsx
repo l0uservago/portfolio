@@ -146,7 +146,7 @@ export function ContactForm() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-5">
             {/* Left Panel: Info & Context */}
-            <div className="lg:col-span-2 bg-white text-black p-10 flex flex-col justify-between relative overflow-hidden border-b lg:border-r lg:border-b-0 border-zinc-100">
+            <div className="lg:col-span-2 bg-white text-black p-6 md:p-10 flex flex-col justify-between relative overflow-hidden border-b lg:border-r lg:border-b-0 border-zinc-100">
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-6 text-zinc-900">
                   Iniziamo un progetto insieme.
@@ -172,7 +172,7 @@ export function ContactForm() {
             </div>
 
             {/* Right Panel: Form */}
-            <div className="lg:col-span-3 p-10 bg-white">
+            <div className="lg:col-span-3 p-6 md:p-10 bg-white">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
 
                 {/* Service Selection */}
@@ -200,7 +200,7 @@ export function ContactForm() {
 
                 {/* Inputs */}
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome</label>
                       <input
