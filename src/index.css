@@ -178,3 +178,94 @@
     --border-angle: 360deg;
   }
 }
+
+/* ===== Neural Background Animations ===== */
+.neural-wave-1 {
+  animation: wave-flow 25s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.neural-wave-2 {
+  animation: wave-flow-reverse 30s ease-in-out infinite alternate;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.neural-wave-3 {
+  animation: fiber-drift 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.neural-wave-4 {
+  animation: fiber-drift-reverse 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.neural-node {
+  animation: node-pulse 4s ease-in-out infinite alternate;
+  will-change: opacity, transform;
+}
+
+.pulse-delay-1 {
+  animation-delay: 0s;
+}
+
+.pulse-delay-2 {
+  animation-delay: 1.5s;
+}
+
+.pulse-delay-3 {
+  animation-delay: 2.5s;
+}
+
+@keyframes wave-flow {
+  0% {
+    transform: translate(-2%, -2%) scale(1);
+  }
+
+  100% {
+    transform: translate(2%, 2%) scale(1.05);
+  }
+}
+
+@keyframes wave-flow-reverse {
+  0% {
+    transform: translate(2%, 2%) scale(1.05);
+  }
+
+  100% {
+    transform: translate(-2%, -2%) scale(1);
+  }
+}
+
+@keyframes fiber-drift {
+  0% {
+    transform: translateY(-3%) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(3%) rotate(1deg);
+  }
+}
+
+@keyframes fiber-drift-reverse {
+  0% {
+    transform: translateY(3%) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(-3%) rotate(-1deg);
+  }
+}
+
+@keyframes node-pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: scale(1.5);
+  }
+}
