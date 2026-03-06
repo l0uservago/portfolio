@@ -6,9 +6,9 @@ const NeuralBackground = () => {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center">
 
-            {/* Neural SVG Layer - Symmetrical Brackets */}
+            {/* Neural SVG Layer - Fullscreen Symmetrical Brackets */}
             <svg
-                className="absolute w-[120%] h-[120%] md:w-full md:h-full opacity-30"
+                className="absolute w-[120%] h-[120%] md:w-full md:h-full opacity-60"
                 viewBox="0 0 1000 600"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16,15 +16,15 @@ const NeuralBackground = () => {
             >
                 {/* Left Symmetrical Bracket Curves */}
                 <path
-                    d="M 250,50 C 100,150 100,450 250,550"
-                    stroke="rgba(0,0,0,0.12)"
+                    d="M 200,-100 C -50,150 -50,450 200,700"
+                    stroke="rgba(0,0,0,0.15)"
                     strokeWidth="1.5"
                     strokeDasharray="4 12"
                     className="neural-wave-1"
                 />
                 <path
-                    d="M 200,100 C 50,200 50,400 200,500"
-                    stroke="rgba(0,0,0,0.08)"
+                    d="M 100,-50 C -150,200 -150,400 100,650"
+                    stroke="rgba(0,0,0,0.1)"
                     strokeWidth="2"
                     strokeDasharray="8 16"
                     className="neural-wave-2"
@@ -32,25 +32,25 @@ const NeuralBackground = () => {
 
                 {/* Right Symmetrical Bracket Curves */}
                 <path
-                    d="M 750,50 C 900,150 900,450 750,550"
-                    stroke="rgba(0,0,0,0.12)"
+                    d="M 800,-100 C 1050,150 1050,450 800,700"
+                    stroke="rgba(0,0,0,0.15)"
                     strokeWidth="1.5"
                     strokeDasharray="4 12"
                     className="neural-wave-1"
                 />
                 <path
-                    d="M 800,100 C 950,200 950,400 800,500"
-                    stroke="rgba(0,0,0,0.08)"
+                    d="M 900,-50 C 1150,200 1150,400 900,650"
+                    stroke="rgba(0,0,0,0.1)"
                     strokeWidth="2"
                     strokeDasharray="8 16"
                     className="neural-wave-2"
                 />
 
                 {/* Pulsing Nodes at Intersections */}
-                <circle cx="165" cy="180" r="3" fill="rgba(0,0,0,0.1)" className="neural-node pulse-delay-1" />
-                <circle cx="120" cy="420" r="4" fill="rgba(0,0,0,0.08)" className="neural-node pulse-delay-2" />
-                <circle cx="835" cy="180" r="3" fill="rgba(0,0,0,0.1)" className="neural-node pulse-delay-3" />
-                <circle cx="880" cy="420" r="4" fill="rgba(0,0,0,0.08)" className="neural-node pulse-delay-1" />
+                <circle cx="85" cy="180" r="3" fill="rgba(0,0,0,0.15)" className="neural-node pulse-delay-1" />
+                <circle cx="20" cy="420" r="4" fill="rgba(0,0,0,0.1)" className="neural-node pulse-delay-2" />
+                <circle cx="915" cy="180" r="3" fill="rgba(0,0,0,0.15)" className="neural-node pulse-delay-3" />
+                <circle cx="980" cy="420" r="4" fill="rgba(0,0,0,0.1)" className="neural-node pulse-delay-1" />
             </svg>
 
             {/* Fade out edges so it seamlessly blends into the white background */}
