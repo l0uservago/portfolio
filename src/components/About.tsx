@@ -108,10 +108,10 @@ export function About() {
             ref={sectionRef}
             className="relative w-full bg-white transition-colors duration-0"
         >
-            <div className="max-w-screen-xl mx-auto relative pt-0 pb-32 -mt-16 md:mt-0 z-20">
+            <div className="max-w-screen-xl mx-auto relative z-20">
 
                 {/* ── THE INTRO MANIFESTO (Perfectly Centered) ── */}
-                <div className="flex flex-col items-center justify-center px-4 relative z-10 text-center mb-16">
+                <div className="flex flex-col items-center justify-center px-4 relative z-10 text-center min-h-[50vh] md:min-h-[70vh] py-24 md:py-32">
 
                     <motion.h2
                         className="text-3xl md:text-5xl lg:text-6xl text-zinc-900 font-medium tracking-tight leading-[1.1] max-w-4xl mb-8"
@@ -134,18 +134,20 @@ export function About() {
                     </motion.p>
                 </div>
 
-                {/* ── THE SPINAL CORD (Central Line) ── */}
-                <div className="absolute top-[350px] bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-zinc-100 z-0" />
-                <motion.div
-                    className="absolute top-[350px] left-1/2 -translate-x-1/2 w-[1px] bg-zinc-800 z-0 origin-top shadow-[0_0_10px_rgba(0,0,0,0.1)]"
-                    style={{ height: spineHeight }}
-                />
+                {/* ── THE SPINAL CORD AND NODES ── */}
+                <div className="relative pb-32">
+                    <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-zinc-100 z-0" />
+                    <motion.div
+                        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] bg-zinc-800 z-0 origin-top shadow-[0_0_10px_rgba(0,0,0,0.1)]"
+                        style={{ height: spineHeight }}
+                    />
 
-                {/* ── THE 5 SYMMETRICAL NODES ── */}
-                <div className="relative">
-                    {expertiseData.map((item, i) => (
-                        <ExpertiseNode key={i} item={item} index={i} />
-                    ))}
+                    {/* ── THE 5 SYMMETRICAL NODES ── */}
+                    <div className="relative">
+                        {expertiseData.map((item, i) => (
+                            <ExpertiseNode key={i} item={item} index={i} />
+                        ))}
+                    </div>
                 </div>
 
             </div>
