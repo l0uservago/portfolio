@@ -111,7 +111,7 @@ export function About() {
             <div className="max-w-screen-xl mx-auto relative z-20">
 
                 {/* ── THE INTRO MANIFESTO (Perfectly Centered) ── */}
-                <div className="flex flex-col items-center justify-center px-4 relative z-10 text-center min-h-[50vh] md:min-h-[70vh] py-24 md:py-32">
+                <div className="flex flex-col items-center justify-center px-4 relative z-10 text-center min-h-screen py-24 md:py-32">
 
                     <motion.h2
                         className="text-3xl md:text-5xl lg:text-6xl text-zinc-900 font-medium tracking-tight leading-[1.1] max-w-4xl mb-8"
