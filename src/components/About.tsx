@@ -5,8 +5,6 @@ import { motion, useScroll, useTransform, useInView } from "motion/react";
 const NeuralBackground = () => {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center">
-            {/* Soft glowing ambient orb */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-zinc-100 rounded-full blur-[100px] opacity-60" />
 
             {/* Neural SVG Layer */}
             <svg
