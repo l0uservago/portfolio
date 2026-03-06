@@ -19,171 +19,225 @@ export function Hero() {
   const chars = name.split("");
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 bg-white text-center relative overflow-hidden">
-      {/* ===== Animated Background Elements ===== */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <section className="w-full bg-white relative overflow-hidden flex justify-center">
+      <div className="w-full max-w-[1440px] min-h-screen grid grid-cols-1 grid-rows-1 px-6 md:px-12 lg:px-24 text-center relative">
+        {/* ===== Animated Background Elements ===== */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden col-start-1 row-start-1">
 
-        {/* Semicircle arc from top, framing the title */}
-        <motion.svg
-          className="hero-arc"
-          viewBox="0 0 800 420"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 3.6, duration: 1.2, ease: "easeOut" }}
-          style={{
-            position: 'absolute',
-            top: '8%',
-            left: 0,
-            right: 0,
-            margin: '0 auto',
-            width: 'min(70vw, 800px)',
-            height: 'auto',
-          }}
-        >
-          {/* Main semicircle — true half-circle using arc command */}
-          <path
-            d="M0,0 A400,400 0 0,0 800,0"
-            stroke="rgba(0,0,0,0.08)"
-            strokeWidth="1.5"
+          {/* ===== Top-Left Corner Arc ===== */}
+          <motion.svg
+            className="absolute top-0 left-0 w-[55%] md:w-[40%] h-auto"
+            viewBox="0 0 500 500"
             fill="none"
-          />
-          {/* Animated dot traveling clockwise along outer arc */}
-          <circle r="6" fill="rgba(0,0,0,0.3)">
-            <animateMotion
-              dur="10s"
-              repeatCount="indefinite"
-              path="M0,0 A400,400 0 0,0 800,0"
-            />
-          </circle>
-
-          {/* Inner semicircle, dashed — rotating counter-clockwise */}
-          <g style={{ transformOrigin: '400px 0px' }} className="hero-inner-arc-spin">
-            <path
-              d="M30,0 A370,370 0 0,0 770,0"
-              stroke="rgba(0,0,0,0.12)"
+            xmlns="http://www.w3.org/2000/svg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.6, duration: 1.2, ease: "easeOut" }}
+          >
+            <motion.path
+              d="M-20,0 Q-20,520 500,520"
+              stroke="rgba(0,0,0,0.08)"
               strokeWidth="1.5"
-              strokeDasharray="6 5"
+              strokeDasharray="8 6"
               fill="none"
+              animate={{ strokeDashoffset: [0, -56] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
             />
-          </g>
+            <motion.path
+              d="M-20,60 Q-20,460 440,460"
+              stroke="rgba(0,0,0,0.06)"
+              strokeWidth="1"
+              strokeDasharray="6 8"
+              fill="none"
+              animate={{ strokeDashoffset: [0, -56] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.path
+              d="M-20,120 Q-20,400 380,400"
+              stroke="rgba(0,0,0,0.04)"
+              strokeWidth="1"
+              strokeDasharray="4 10"
+              fill="none"
+              animate={{ strokeDashoffset: [0, -56] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.svg>
 
-          {/* Dots at key points */}
-          <circle cx="0" cy="0" r="4" fill="rgba(0,0,0,0.12)" />
-          <circle cx="800" cy="0" r="4" fill="rgba(0,0,0,0.12)" />
-          <circle cx="400" cy="400" r="5" fill="rgba(0,0,0,0.15)" />
-          <circle cx="200" cy="346" r="3" fill="rgba(0,0,0,0.08)" />
-          <circle cx="600" cy="346" r="3" fill="rgba(0,0,0,0.08)" />
-        </motion.svg>
-
-        {/* Floating geometric shapes */}
-        {/* Small hollow square */}
-        <div className="hero-float hero-float-1" style={{ top: '15%', left: '10%' }}>
-          <div style={{ width: 24, height: 24, border: '1.5px solid rgba(0,0,0,0.08)', borderRadius: 4 }} />
-        </div>
-        {/* Small plus/cross */}
-        <div className="hero-float hero-float-2" style={{ top: '20%', right: '15%' }}>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <line x1="10" y1="2" x2="10" y2="18" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" />
-            <line x1="2" y1="10" x2="18" y2="10" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" />
-          </svg>
-        </div>
-        {/* Small triangle */}
-        <div className="hero-float hero-float-3" style={{ bottom: '25%', left: '8%' }}>
-          <svg width="22" height="20" viewBox="0 0 22 20" fill="none">
-            <path d="M11 2L20 18H2L11 2Z" stroke="rgba(0,0,0,0.07)" strokeWidth="1.5" />
-          </svg>
-        </div>
-        {/* Small circle */}
-        <div className="hero-float hero-float-4" style={{ bottom: '20%', right: '12%' }}>
-          <div style={{ width: 16, height: 16, borderRadius: '50%', border: '1.5px solid rgba(0,0,0,0.08)' }} />
-        </div>
-        {/* Small diamond */}
-        <div className="hero-float hero-float-5" style={{ top: '60%', left: '85%' }}>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <rect x="9" y="1" width="11" height="11" rx="1" stroke="rgba(0,0,0,0.07)" strokeWidth="1.5" transform="rotate(45 9 1)" />
-          </svg>
-        </div>
-
-        {/* Pulsing accent dots */}
-        <div className="hero-pulse-dot" style={{ top: '30%', left: '20%' }} />
-        <div className="hero-pulse-dot" style={{ top: '70%', right: '18%', animationDelay: '1.5s' }} />
-        <div className="hero-pulse-dot" style={{ top: '45%', right: '25%', animationDelay: '3s' }} />
-      </div>
-
-      <div className="max-w-5xl flex flex-col items-center relative z-10">
-        <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-medium tracking-tighter leading-none text-zinc-900 flex flex-wrap justify-center">
-          {chars.map((char, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={charVariants}
-              className={char === " " ? "w-[0.25em]" : "inline-block"}
-            >
-              {char}
-            </motion.span>
-          ))}
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ delay: 2.0, duration: 1, ease: "easeOut" }}
-          className="mt-8 text-lg md:text-2xl text-zinc-500 max-w-2xl font-light tracking-wide"
-        >
-          Creative Technologist & AI Prototyper. <br className="hidden md:block" />
-          Sviluppo prodotti digitali che scalano.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.8, duration: 0.8, ease: "easeOut" }}
-          className="mt-12 flex flex-col sm:flex-row items-center gap-6"
-        >
-          <a
-            href="#contact"
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-black text-white font-medium rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95"
+          {/* ===== Bottom-Right Corner Arc ===== */}
+          <motion.svg
+            className="absolute bottom-0 right-0 w-[55%] md:w-[40%] h-auto"
+            viewBox="0 0 500 500"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.8, duration: 1.2, ease: "easeOut" }}
           >
-            <span className="relative z-10">Parliamone</span>
-            <div className="absolute inset-0 bg-zinc-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-          </a>
-          <a
-            href="#works"
-            className="text-zinc-950 font-medium hover:text-zinc-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-zinc-950 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
-          >
-            Esplora i Progetti
-          </a>
-        </motion.div>
+            <motion.path
+              d="M520,500 Q520,-20 0,-20"
+              stroke="rgba(0,0,0,0.08)"
+              strokeWidth="1.5"
+              strokeDasharray="8 6"
+              fill="none"
+              animate={{ strokeDashoffset: [0, 56] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.path
+              d="M520,440 Q520,40 60,40"
+              stroke="rgba(0,0,0,0.06)"
+              strokeWidth="1"
+              strokeDasharray="6 8"
+              fill="none"
+              animate={{ strokeDashoffset: [0, 56] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.path
+              d="M520,380 Q520,100 120,100"
+              stroke="rgba(0,0,0,0.04)"
+              strokeWidth="1"
+              strokeDasharray="4 10"
+              fill="none"
+              animate={{ strokeDashoffset: [0, 56] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.svg>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.5, duration: 0.8, ease: "easeOut" }}
-        >
-          <TechTicker />
-        </motion.div>
+          {/* Floating geometric shapes (Optimized for Mobile Visibility & 60fps & Bound to upper 60% of screen) */}
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 4.2, duration: 1 }}
-          className="mt-16 flex flex-col items-center gap-2"
-        >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-light">scroll</span>
+          {/* Small hollow square */}
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="hero-float absolute z-0"
+            style={{ top: '15%', left: '10%' }}
+            animate={{ y: [-10, 10, -10], rotate: [0, 10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 6L8 11L13 6" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <div className="w-8 h-8 md:w-6 md:h-6 border-2 border-black/15 rounded-md" />
+          </motion.div>
+
+          {/* Small plus/cross */}
+          <motion.div
+            className="hero-float absolute z-0"
+            style={{ top: '25%', right: '15%' }}
+            animate={{ y: [10, -10, 10], rotate: [0, -15, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          >
+            <svg width="28" height="28" viewBox="0 0 20 20" fill="none" className="md:w-[20px] md:h-[20px]">
+              <line x1="10" y1="2" x2="10" y2="18" stroke="rgba(0,0,0,0.2)" strokeWidth="2" />
+              <line x1="2" y1="10" x2="18" y2="10" stroke="rgba(0,0,0,0.2)" strokeWidth="2" />
             </svg>
           </motion.div>
-        </motion.div>
+
+          {/* Small triangle */}
+          <motion.div
+            className="hero-float absolute z-0"
+            style={{ top: '45%', left: '8%' }}
+            animate={{ y: [-15, 15, -15] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          >
+            <svg width="30" height="28" viewBox="0 0 22 20" fill="none" className="md:w-[22px] md:h-[20px]">
+              <path d="M11 2L20 18H2L11 2Z" stroke="rgba(0,0,0,0.15)" strokeWidth="2" />
+            </svg>
+          </motion.div>
+
+          {/* Small diamond */}
+          <motion.div
+            className="hero-float absolute z-0"
+            style={{ top: '40%', left: '85%' }}
+            animate={{ y: [-8, 8, -8], rotate: [0, 45, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          >
+            <svg width="24" height="24" viewBox="0 0 18 18" fill="none" className="md:w-[18px] md:h-[18px]">
+              <rect x="9" y="1" width="11" height="11" rx="1" stroke="rgba(0,0,0,0.15)" strokeWidth="2" transform="rotate(45 9 1)" />
+            </svg>
+          </motion.div>
+
+          {/* Pulsing accent dots */}
+          <div className="hero-pulse-dot" style={{ top: '30%', left: '20%' }} />
+          <div className="hero-pulse-dot" style={{ top: '70%', right: '18%', animationDelay: '1.5s' }} />
+          <div className="hero-pulse-dot" style={{ top: '45%', right: '25%', animationDelay: '3s' }} />
+        </div>
+
+        <div className="flex flex-col items-center relative z-10 w-full h-full min-h-screen col-start-1 row-start-1">
+          {/* Top spacer */}
+          <div className="flex-1" />
+
+          {/* Core centered content */}
+          <div className="max-w-5xl flex flex-col items-center text-center px-6">
+            <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-medium tracking-tighter leading-none text-zinc-900 flex flex-wrap justify-center">
+              {chars.map((char, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  initial="hidden"
+                  animate="visible"
+                  variants={charVariants}
+                  className={char === " " ? "w-[0.25em]" : "inline-block"}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 2.0, duration: 1, ease: "easeOut" }}
+              className="mt-8 text-lg md:text-2xl text-zinc-500 max-w-2xl font-light tracking-wide"
+            >
+              Creative Technologist & AI Prototyper. <br className="hidden md:block" />
+              Sviluppo prodotti digitali che scalano.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.8, duration: 0.8, ease: "easeOut" }}
+              className="mt-12 flex flex-col sm:flex-row items-center gap-6"
+            >
+              <a
+                href="#contact"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-black text-white font-medium rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95"
+              >
+                <span className="relative z-10">Parliamone</span>
+                <div className="absolute inset-0 bg-zinc-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              </a>
+              <a
+                href="#works"
+                className="text-zinc-950 font-medium hover:text-zinc-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-zinc-950 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+              >
+                Esplora i Progetti
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Bottom elements */}
+          <div className="flex flex-col items-center pb-4 md:pb-6 w-full mt-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 3.5, duration: 1 }}
+              className="flex flex-col items-center gap-2 mb-6"
+            >
+              <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-light">scroll</span>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 6L8 11L13 6" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 4.2, duration: 0.8, ease: "easeOut" }}
+            >
+              <TechTicker />
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -207,7 +261,7 @@ const TechTicker = () => {
   const allTechs = [...techs, ...techs, ...techs, ...techs];
 
   return (
-    <div className="w-screen max-w-[100vw] overflow-hidden mt-32 -ml-[50vw] left-[50%] relative">
+    <div className="w-[100vw] overflow-hidden mt-32 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <motion.div
         className="flex gap-16 md:gap-24 w-max pr-16 md:pr-24"
         animate={{ x: ["0%", "-25%"] }}

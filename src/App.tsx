@@ -31,7 +31,7 @@ export default function App() {
     <div
       ref={containerRef}
       onScroll={handleScroll}
-      className="bg-white text-zinc-950 selection:bg-black selection:text-white font-sans antialiased h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth relative"
+      className="bg-white text-zinc-950 selection:bg-black selection:text-white font-sans antialiased h-screen w-full overflow-y-scroll overflow-x-hidden md:snap-y md:snap-mandatory scroll-smooth relative"
     >
       {/* Progress bar */}
       <motion.div
@@ -42,19 +42,19 @@ export default function App() {
 
 
       <main>
-        <div className="snap-start snap-always w-full min-h-screen">
+        <div className="md:snap-start md:snap-always w-full min-h-screen">
           <Hero />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen">
+        <div className="md:snap-start md:snap-always w-full min-h-screen">
           <About />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen flex flex-col justify-center">
+        <div className="md:snap-start md:snap-always w-full min-h-screen flex flex-col justify-center">
           <Expertise />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen flex flex-col justify-center">
+        <div className="md:snap-start md:snap-always w-full min-h-screen flex flex-col justify-center">
           <SelectedWorks />
         </div>
-        <div className="snap-start snap-always min-h-screen w-full flex flex-col justify-between bg-zinc-50">
+        <div className="md:snap-start md:snap-always min-h-screen w-full flex flex-col justify-between bg-zinc-50">
           <div className="flex-grow flex flex-col justify-center">
             <ContactForm />
           </div>

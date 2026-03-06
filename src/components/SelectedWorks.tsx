@@ -121,15 +121,16 @@ export function SelectedWorks() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10 w-full">
         {/* Creative Container - White Theme, No Window Controls */}
+        {/* ===== DESKTOP LAYOUT (Hidden on Mobile) ===== */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-white rounded-3xl overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.1)] border border-zinc-100 flex flex-col md:flex-row h-[700px] md:h-[550px]"
+          className="hidden bg-white rounded-3xl overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.1)] border border-zinc-100 md:flex flex-row h-[550px]"
         >
           {/* Sidebar / List */}
-          <div className="w-full md:w-1/3 bg-white border-r border-zinc-100 flex flex-col relative z-10">
+          <div className="w-1/3 bg-white border-r border-zinc-100 flex flex-col relative z-10 flex-shrink-0">
             {/* Header */}
             <div className="p-6 border-b border-zinc-100 flex justify-between items-center bg-white">
               <span className="font-mono text-xs uppercase tracking-widest text-zinc-400">Index</span>
@@ -175,7 +176,7 @@ export function SelectedWorks() {
           </div>
 
           {/* Main Preview Area */}
-          <div className="w-full md:w-2/3 flex-1 relative bg-zinc-100 overflow-hidden group">
+          <div className="w-2/3 flex-1 relative bg-zinc-100 overflow-hidden group">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeWork.id}
@@ -196,13 +197,13 @@ export function SelectedWorks() {
             </AnimatePresence>
 
             {/* Floating Info Card (Glassmorphism) */}
-            <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 pointer-events-none">
+            <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
               <motion.div
                 key={activeWork.id}
                 initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl shadow-lg border border-white/20 pointer-events-auto"
+                className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-white/20 pointer-events-auto"
               >
                 <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 justify-between items-end">
                   <div className="space-y-3">
@@ -236,6 +237,74 @@ export function SelectedWorks() {
             </div>
           </div>
         </motion.div>
+
+        {/* ===== MOBILE LAYOUT (Cinematic Vertical Stack, Hidden on Desktop) ===== */}
+        <div className="md:hidden flex flex-col gap-6 w-full">
+          {works.map((work, index) => (
+            <motion.div
+              key={work.id}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full h-[70vh] rounded-3xl overflow-hidden shadow-2xl border border-zinc-200/50"
+              onClick={() => setSelectedProject(work)}
+            >
+              {/* Background Image */}
+              <motion.img
+                src={work.image}
+                alt={work.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8 }}
+              />
+
+              {/* Gradient Overlay for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+              {/* Content Panel (Glassmorphism) at bottom */}
+              <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
+                <div className="bg-white/10 backdrop-blur-xl p-5 rounded-2xl border border-white/20 pointer-events-auto group">
+                  <div className="flex flex-col gap-4">
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {work.tech.slice(0, 3).map((t, i) => (
+                        <span key={i} className="px-2 py-1 text-[10px] font-mono bg-white/20 text-white border border-white/10 rounded backdrop-blur-md">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Titles */}
+                    <div>
+                      <h2 className="text-2xl font-medium text-white tracking-tight mb-1">
+                        {work.title}
+                      </h2>
+                      <p className="text-zinc-300 text-sm font-light line-clamp-2">
+                        {work.description}
+                      </p>
+                    </div>
+
+                    {/* Action Button */}
+                    <div className="pt-2 flex items-center justify-between">
+                      <span className="text-white/60 text-xs font-mono uppercase tracking-widest group-hover:text-white transition-colors">
+                        Scopri
+                      </span>
+                      <button className="w-10 h-10 bg-white/20 backdrop-blur border border-white/20 text-white rounded-full flex items-center justify-center active:scale-95 transition-transform">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transform -rotate-45">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

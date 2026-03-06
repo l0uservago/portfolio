@@ -7,72 +7,143 @@ const wrap = (min: number, max: number, v: number) => {
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
-const PremiumWebsiteAnimation = () => (
-  <div className="w-full h-48 bg-white rounded-xl border border-zinc-200 overflow-hidden relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
-    {/* Browser UI */}
-    <div className="h-6 bg-zinc-50 border-b border-zinc-100 flex items-center px-3 gap-1.5 z-20 relative">
-      <div className="w-2 h-2 rounded-full bg-zinc-300" />
-      <div className="w-2 h-2 rounded-full bg-zinc-300" />
-      <div className="w-16 h-3 bg-zinc-200 rounded-full ml-2 opacity-50" />
-    </div>
+/* ═══════════════════════════════════════════════════
+   1. AI PRODUCT ANIMATION — Neural Network
+   ═══════════════════════════════════════════════════ */
+const AIProductAnimation = () => {
+  // Node positions for the neural network
+  const nodes = [
+    // Input layer
+    { x: 30, y: 40, r: 5, layer: 0 },
+    { x: 30, y: 96, r: 5, layer: 0 },
+    { x: 30, y: 152, r: 5, layer: 0 },
+    // Hidden layer 1
+    { x: 100, y: 56, r: 6, layer: 1 },
+    { x: 100, y: 96, r: 6, layer: 1 },
+    { x: 100, y: 136, r: 6, layer: 1 },
+    // Hidden layer 2
+    { x: 170, y: 48, r: 6, layer: 2 },
+    { x: 170, y: 96, r: 7, layer: 2 },
+    { x: 170, y: 144, r: 6, layer: 2 },
+    // Output layer
+    { x: 240, y: 72, r: 5, layer: 3 },
+    { x: 240, y: 120, r: 5, layer: 3 },
+  ];
 
-    {/* Scrolling Website Content */}
-    <div className="relative w-full h-full overflow-hidden bg-zinc-50">
-      <motion.div
-        className="w-full"
-        animate={{ y: [-20, -120] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
-      >
-        {/* Hero Section */}
-        <div className="h-32 w-full bg-white flex flex-col items-center justify-center gap-2 p-4 border-b border-zinc-100">
-          <motion.div
-            className="w-16 h-16 rounded-full bg-zinc-100 mb-2"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-          <motion.div
-            className="w-3/4 h-4 bg-zinc-900 rounded-sm"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          />
-          <motion.div
-            className="w-1/2 h-2 bg-zinc-300 rounded-sm"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          />
-          <motion.div
-            className="mt-2 w-20 h-6 bg-black rounded-full"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          />
-        </div>
+  // Connections between layers
+  const connections: [number, number][] = [];
+  // Input → Hidden 1
+  for (let i = 0; i < 3; i++) for (let j = 3; j < 6; j++) connections.push([i, j]);
+  // Hidden 1 → Hidden 2
+  for (let i = 3; i < 6; i++) for (let j = 6; j < 9; j++) connections.push([i, j]);
+  // Hidden 2 → Output
+  for (let i = 6; i < 9; i++) for (let j = 9; j < 11; j++) connections.push([i, j]);
 
-        {/* Grid Section */}
-        <div className="p-4 grid grid-cols-2 gap-3">
-          {[1, 2, 3, 4].map((i) => (
-            <motion.div
-              key={i}
-              className="h-24 bg-white rounded-lg border border-zinc-100 p-2 flex flex-col gap-2"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <div className="w-full h-12 bg-zinc-100 rounded-md" />
-              <div className="w-3/4 h-2 bg-zinc-200 rounded-sm" />
-              <div className="w-1/2 h-2 bg-zinc-100 rounded-sm" />
-            </motion.div>
+  return (
+    <div className="w-full h-48 bg-white rounded-xl border border-zinc-200 overflow-hidden relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
+      {/* Browser UI */}
+      <div className="h-6 bg-zinc-50 border-b border-zinc-100 flex items-center px-3 gap-1.5">
+        <div className="w-2 h-2 rounded-full bg-zinc-300" />
+        <div className="w-2 h-2 rounded-full bg-zinc-300" />
+        <div className="w-16 h-3 bg-zinc-200 rounded-full ml-2 opacity-50" />
+      </div>
+
+      <div className="relative w-full h-full flex items-center justify-center p-4">
+        <svg viewBox="0 0 270 192" className="w-full h-full max-h-[160px]" fill="none">
+          {/* Connections */}
+          {connections.map(([from, to], i) => (
+            <g key={`conn-${i}`}>
+              <line
+                x1={nodes[from].x}
+                y1={nodes[from].y}
+                x2={nodes[to].x}
+                y2={nodes[to].y}
+                stroke="rgba(0,0,0,0.06)"
+                strokeWidth="1"
+              />
+              {/* Traveling data pulse */}
+              <motion.circle
+                r="2"
+                fill="rgba(0,0,0,0.4)"
+                initial={{ opacity: 0 }}
+                animate={{
+                  cx: [nodes[from].x, nodes[to].x],
+                  cy: [nodes[from].y, nodes[to].y],
+                  opacity: [0, 0.8, 0.8, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: (nodes[from].layer * 1.2) + (i % 3) * 0.3,
+                  ease: "easeInOut",
+                  times: [0, 0.1, 0.9, 1],
+                }}
+              />
+            </g>
           ))}
-        </div>
-      </motion.div>
-    </div>
-  </div>
-);
 
+          {/* Nodes */}
+          {nodes.map((node, i) => (
+            <g key={`node-${i}`}>
+              {/* Glow ring */}
+              <motion.circle
+                cx={node.x}
+                cy={node.y}
+                r={node.r + 4}
+                fill="none"
+                stroke="rgba(0,0,0,0.08)"
+                strokeWidth="1"
+                animate={{
+                  r: [node.r + 4, node.r + 8, node.r + 4],
+                  opacity: [0.3, 0.08, 0.3],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: node.layer * 0.5 + i * 0.15,
+                  ease: "easeInOut",
+                }}
+              />
+              {/* Core node */}
+              <motion.circle
+                cx={node.x}
+                cy={node.y}
+                r={node.r}
+                fill="white"
+                stroke="rgba(0,0,0,0.25)"
+                strokeWidth="1.5"
+                animate={{
+                  fill: ["rgba(255,255,255,1)", "rgba(0,0,0,0.9)", "rgba(255,255,255,1)"],
+                  stroke: ["rgba(0,0,0,0.25)", "rgba(0,0,0,0.7)", "rgba(0,0,0,0.25)"],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  delay: node.layer * 1.2 + (i % 3) * 0.2,
+                  ease: "easeInOut",
+                }}
+              />
+            </g>
+          ))}
+
+          {/* Central "brain" icon — subtle AI badge */}
+          <motion.g
+            animate={{ opacity: [0.15, 0.35, 0.15] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <text x="135" y="185" textAnchor="middle" fontSize="9" fill="rgba(0,0,0,0.3)" fontFamily="system-ui" fontWeight="300" letterSpacing="0.1em">
+              AI MODEL
+            </text>
+          </motion.g>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════════════
+   2. WEB APP / DASHBOARD ANIMATION (preserved)
+   ═══════════════════════════════════════════════════ */
 const WebAppAnimation = () => (
   <div className="w-full h-48 bg-white rounded-xl border border-zinc-200 overflow-hidden relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
     {/* Browser UI */}
@@ -163,84 +234,195 @@ const WebAppAnimation = () => (
   </div>
 );
 
-const EcommerceAnimation = () => (
-  <div className="w-full h-48 bg-white rounded-xl border border-zinc-200 overflow-hidden relative shadow-sm group-hover:shadow-md transition-shadow duration-500 flex items-center justify-center">
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Conveyor Belt */}
-      <div className="absolute bottom-8 left-0 right-0 h-1 bg-zinc-200">
-        <motion.div
-          className="w-full h-full bg-zinc-300"
-          animate={{ x: ["-100%", "0%"] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          style={{ background: "repeating-linear-gradient(90deg, transparent, transparent 20px, #e4e4e7 20px, #e4e4e7 40px)" }}
-        />
+/* ═══════════════════════════════════════════════════
+   3. API FLOW / AUTOMATION ANIMATION
+   ═══════════════════════════════════════════════════ */
+const APIFlowAnimation = () => {
+  const services = [
+    { x: 24, y: 50, label: "CRM", icon: "👤" },
+    { x: 24, y: 120, label: "DB", icon: "🗄" },
+    { x: 230, y: 50, label: "API", icon: "⚡" },
+    { x: 230, y: 120, label: "MKT", icon: "📊" },
+  ];
+
+  const hub = { x: 127, y: 85 };
+
+  return (
+    <div className="w-full h-48 bg-white rounded-xl border border-zinc-200 overflow-hidden relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
+      {/* Browser UI */}
+      <div className="h-6 bg-zinc-50 border-b border-zinc-100 flex items-center px-3 gap-1.5">
+        <div className="w-2 h-2 rounded-full bg-zinc-300" />
+        <div className="w-2 h-2 rounded-full bg-zinc-300" />
+        <div className="w-16 h-3 bg-zinc-200 rounded-full ml-2 opacity-50" />
       </div>
 
-      {/* Product Box */}
-      <motion.div
-        className="w-16 h-16 bg-white border-2 border-zinc-900 rounded-xl z-10 flex items-center justify-center shadow-lg"
-        animate={{
-          y: [0, -5, 0],
-          rotate: [0, 2, -2, 0]
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-8 h-8 bg-zinc-100 rounded-md flex items-center justify-center">
-          <div className="w-4 h-4 bg-zinc-900 rounded-full" />
-        </div>
-      </motion.div>
+      <div className="relative w-full h-full flex items-center justify-center p-2">
+        <svg viewBox="0 0 270 170" className="w-full h-full max-h-[150px]" fill="none">
 
-      {/* Floating Elements (Cart, Likes) */}
-      {[0, 1, 2].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute"
-          initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-          animate={{
-            opacity: [0, 1, 1, 0],
-            scale: [0.5, 1, 1.1, 0.8],
-            x: [0, (i - 1) * 60],
-            y: [0, -80]
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            delay: i * 0.8,
-            ease: "easeOut",
-            times: [0, 0.2, 0.8, 1]
-          }}
-        >
-          {i === 0 ? (
-            <div className="p-2 bg-black rounded-full text-white text-xs font-bold shadow-lg">SALE</div>
-          ) : i === 1 ? (
-            <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center border border-zinc-200 shadow-md">🛒</div>
-          ) : (
-            <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center border border-zinc-200 shadow-md">❤️</div>
-          )}
-        </motion.div>
-      ))}
+          {/* Connection lines from services to hub */}
+          {services.map((svc, i) => (
+            <g key={`line-${i}`}>
+              <line
+                x1={svc.x + 16}
+                y1={svc.y + 12}
+                x2={hub.x}
+                y2={hub.y}
+                stroke="rgba(0,0,0,0.08)"
+                strokeWidth="1.5"
+                strokeDasharray="4 3"
+              />
+              {/* Data packet traveling to hub */}
+              <motion.circle
+                r="3"
+                fill="rgba(0,0,0,0.5)"
+                animate={{
+                  cx: [svc.x + 16, hub.x, svc.x + 16],
+                  cy: [svc.y + 12, hub.y, svc.y + 12],
+                  opacity: [0, 0.7, 0.7, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  delay: i * 0.8,
+                  ease: "easeInOut",
+                  times: [0, 0.3, 0.5, 0.7, 1],
+                }}
+              />
+            </g>
+          ))}
+
+          {/* Central Hub — orchestration node */}
+          <motion.circle
+            cx={hub.x}
+            cy={hub.y}
+            r="22"
+            fill="white"
+            stroke="rgba(0,0,0,0.15)"
+            strokeWidth="1.5"
+          />
+          <motion.circle
+            cx={hub.x}
+            cy={hub.y}
+            r="26"
+            fill="none"
+            stroke="rgba(0,0,0,0.06)"
+            strokeWidth="1"
+            animate={{
+              r: [26, 34, 26],
+              opacity: [0.3, 0, 0.3],
+            }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Hub rotating ring */}
+          <motion.circle
+            cx={hub.x}
+            cy={hub.y}
+            r="18"
+            fill="none"
+            stroke="rgba(0,0,0,0.15)"
+            strokeWidth="1"
+            strokeDasharray="6 10"
+            style={{ transformOrigin: `${hub.x}px ${hub.y}px` }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          />
+          {/* Hub icon */}
+          <motion.text
+            x={hub.x}
+            y={hub.y + 1}
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontSize="14"
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            ⚙️
+          </motion.text>
+
+          {/* Service boxes */}
+          {services.map((svc, i) => (
+            <g key={`svc-${i}`}>
+              <motion.rect
+                x={svc.x}
+                y={svc.y}
+                width="32"
+                height="24"
+                rx="6"
+                fill="white"
+                stroke="rgba(0,0,0,0.15)"
+                strokeWidth="1.5"
+                animate={{
+                  stroke: ["rgba(0,0,0,0.15)", "rgba(0,0,0,0.4)", "rgba(0,0,0,0.15)"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.8,
+                  ease: "easeInOut",
+                }}
+              />
+              <text
+                x={svc.x + 16}
+                y={svc.y + 14}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize="10"
+              >
+                {svc.icon}
+              </text>
+              <text
+                x={svc.x + 16}
+                y={svc.y + 34}
+                textAnchor="middle"
+                fontSize="7"
+                fill="rgba(0,0,0,0.3)"
+                fontFamily="system-ui"
+                fontWeight="400"
+              >
+                {svc.label}
+              </text>
+            </g>
+          ))}
+
+          {/* Subtle label */}
+          <motion.g
+            animate={{ opacity: [0.15, 0.3, 0.15] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <text x="135" y="162" textAnchor="middle" fontSize="8" fill="rgba(0,0,0,0.25)" fontFamily="system-ui" fontWeight="300" letterSpacing="0.1em">
+              ORCHESTRATION
+            </text>
+          </motion.g>
+        </svg>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
+/* ═══════════════════════════════════════════════════
+   EXPERTISE DATA
+   ═══════════════════════════════════════════════════ */
 const expertiseAreas = [
   {
-    title: "Siti Web Premium",
-    description: "Siti vetrina e landing page dal design moderno e minimale. Ottimizzati per prestazioni estreme, SEO e conversioni.",
-    animation: PremiumWebsiteAnimation,
-  },
-  {
-    title: "E-commerce ad Alta Conversione",
-    description: "Storefront veloci e soluzioni commerce su misura (anche headless) progettate per massimizzare le vendite e l'esperienza utente.",
-    animation: EcommerceAnimation,
+    title: "Prodotti AI su Misura",
+    description: "Integro le API dei modelli più avanzati (GPT, Claude, Gemini) per creare soluzioni intelligenti: chatbot, generazione contenuti, automazioni cognitive. Non uso l'AI — la costruisco dentro il prodotto.",
+    animation: AIProductAnimation,
   },
   {
     title: "Web App & Gestionali",
-    description: "Sistemi custom, dashboard interne e single-page applications robuste, costruite con il moderno ecosistema React per automatizzare il tuo business.",
+    description: "Sistemi custom, dashboard, SPA robuste. Costruite con React, TypeScript e backend moderni (Supabase, Node.js) per automatizzare e scalare il tuo business.",
     animation: WebAppAnimation,
+  },
+  {
+    title: "Automazioni & Integrazioni API",
+    description: "Orchestro flussi complessi tra API, database e servizi di terze parti. Collego il tuo ecosistema (CRM, Analytics, Marketing) con soluzioni low-code e custom che lavorano 24/7.",
+    animation: APIFlowAnimation,
   },
 ];
 
+/* ═══════════════════════════════════════════════════
+   PARALLAX TEXT (unchanged)
+   ═══════════════════════════════════════════════════ */
 function ParallaxText({ children, baseVelocity = 100 }: { children: string; baseVelocity: number }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -259,7 +441,6 @@ function ParallaxText({ children, baseVelocity = 100 }: { children: string; base
   useAnimationFrame((t, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-    // Change direction based on scroll velocity (optional, keeping it simple unidirectional for now or bidirectional)
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
     } else if (velocityFactor.get() > 0) {
@@ -287,6 +468,9 @@ function ParallaxText({ children, baseVelocity = 100 }: { children: string; base
   );
 }
 
+/* ═══════════════════════════════════════════════════
+   MAIN COMPONENT
+   ═══════════════════════════════════════════════════ */
 export function Expertise() {
   return (
     <section id="expertise" className="py-0 pb-10 relative overflow-hidden w-full">
